@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  # flower
+  flower:
+    build: .
+    image: flower
+    network_mode: host
+    restart: always
+    environment:
+    - REDIS_HOST=dnode20
+    - REDIS_PORT=6379
+    - REDIS_DATABASE=1
+    - CELERY_APP=adminset
+    ports:
+    - "5555:5555"
