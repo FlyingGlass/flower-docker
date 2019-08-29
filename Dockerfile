@@ -14,14 +14,7 @@ ENV PYTHONUNBUFFERED=1 PYTHONHASHSEED=random PYTHONDONTWRITEBYTECODE=1
 # Default port
 EXPOSE 5555
 
-# Variables with default that can be overruled by environment vars during docker run.
-ENV       REDIS_HOST redis
-ENV       REDIS_PORT 6379
-ENV       REDIS_DATABASE 0
-ENV       CELERY_APP adminset
-
 # Run as a non-root user by default, run as user with least privileges.
 USER nobody
 
-# ENTRYPOINT ["flower"]
-CMD       flower -A $CELERY_APP --address=0.0.0.0 --port=5555 --broker=redis://$REDIS_HOST:$REDIS_PORT/$REDIS_DATABASE
+ENTRYPOINT ["flower"]
